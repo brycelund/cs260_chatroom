@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 
-var User = require('../models/Message');
-var Message = require('../models/User');
+var Message = require('../models/Message');
+var User = require('../models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -16,15 +16,17 @@ router.get('/chat', function(req, res, next) {
 
 router.post('/messages', function(req, res, next) {
   let newMessage = new Message();
-  message.username = req.body.username;
-  message.content = req.body.content;
-  message.save();
+  newMessage.username = req.body.username;
+  newMessage.content = req.body.text;
+  newMessage.save();
+  res.sendStatus(200);
 });
 
 router.get('/messages', function(req, res, next) {
-  User.find({}, (error, results) => {
-    console.log(error,results);
+  Message.find({}, (error, results) => {
+    res.send(results);
   });
+
 });
 
 module.exports = router;

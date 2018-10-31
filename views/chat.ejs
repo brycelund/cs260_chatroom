@@ -85,18 +85,38 @@
           </div>
 
           <div class="messagebox">
-              <input type="text" class="messageinput" placeholder="iMessage"/>
-              <button class="btn messagesend">↑</button>
+              <input type="text" class="messageinput" placeholder="iMessage" id="messageinput"/>
+              <button class="btn messagesend" onclick="sendMessage()">↑</button>
           </div>
 
 
         </div>
     </div>
 </div>
-
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
 <script>
   var element = document.getElementById("messages");
   element.scrollTop = element.scrollHeight;
+
+
+  function sendMessage(){
+    $.ajax({
+      type: "POST",
+      url: "/messages",
+      data: {
+        text: $("#messageinput").val(),
+        username: "bryce"
+      },
+      success: (result) => {
+        console.log("SENT"+result);
+        $("#messageinput").val("");
+      }
+    });
+
+  }
 </script>
 
   </body>

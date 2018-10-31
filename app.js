@@ -24,16 +24,12 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 
-//Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/chatroom';
-mongoose.connect(mongoDB);
-// Get Mongoose to use the global promise library
-mongoose.Promise = global.Promise;
-//Get the default connection
-var db = mongoose.connection;
-
-//Bind connection to error event (to get notification of connection errors)
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+var options = {
+  auth: {authdb: 'admin'},
+  user: "root",
+  pass: "PZlVg9gwTBCA",
+}
+mongoose.connect("mongodb://localhost:27017/groupchat", options);
 
 
 // catch 404 and forward to error handler
