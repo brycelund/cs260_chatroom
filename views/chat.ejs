@@ -75,6 +75,35 @@
     });
 
   }
+
+
+
+  function loadMessages(){
+
+    let username = "<%=username%>";
+
+    $.ajax({
+      type: "GET",
+      url: "/messages",
+      success: (messages) => {
+
+        console.log("Loading Messages");
+
+        let allmessages = "";
+        for(message of messages){
+          let mclass = (message.username == username)? 'mymessage' : 'othermessage';
+          allmessages += "<div class='"+mclass+"'><span class='messageusername'>"+message.username+"</span><span class='messagecontent'>"+message.content+"</span></div>";
+        }
+
+        $("#messages").html(allmessages);
+
+      }
+    });
+
+  }
+
+
+  setInterval(loadMessages, 1000);
 </script>
 
   </body>
