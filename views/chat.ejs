@@ -66,7 +66,7 @@
       url: "/messages",
       data: {
         text: $("#messageinput").val(),
-        username: "bryce"
+        username: "<%=username%>"
       },
       success: (result) => {
         console.log("SENT"+result);
@@ -87,8 +87,6 @@
       url: "/messages",
       success: (messages) => {
 
-        console.log("Loading Messages");
-
         let allmessages = "";
         for(message of messages){
           let mclass = (message.username == username)? 'mymessage' : 'othermessage';
@@ -103,7 +101,7 @@
   }
 
 
-  setInterval(loadMessages, 1000);
+  setInterval(loadMessages, 3000);
 </script>
 
   </body>

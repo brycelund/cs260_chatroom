@@ -1,20 +1,34 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 var Message = require('../models/Message');
 var User = require('../models/User');
 
-/* GET home page. */
+router.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+
+
+
 router.get('/', function(req, res, next) {
   res.render('index');
 });
 
+router.post('/', function(req, res, next){
+  console.log(req.body);
+  req.session.username = req.body.username;
+  res.redirect('/chat');
+})
+
 router.get('/chat', function(req, res, next) {
-  Message.find({}, (error, results) => {
-    console.log("Found",results);
-      res.render('chat', { messages: results, username: "bryce" });
-  });
+  if(!req.session.username){
+    res.redirect("/");
+  }else{
+    Message.find({}, (error, results) => {
+      console.log("Found",results);
+        res.render('chat', { messages: results, username: req.session.username });
+    });
+  }
 });
 
 router.post('/messages', function(req, res, next) {
@@ -29,6 +43,10 @@ router.get('/messages', function(req, res, next) {
   Message.find({}, (error, results) => {
     res.send(results);
   });
+});
+
+router.get('/logout', function(req, res, next) {
+  req.session.username = null;
 });
 
 module.exports = router;
