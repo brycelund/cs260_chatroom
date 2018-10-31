@@ -30,56 +30,14 @@
 
           <div class="messages" id="messages">
 
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
+            <% for(message of messages){ %>
 
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
+              <div class="<%=(message.username == username)? 'mymessage' : 'othermessage'%>">
+                <span class="messageusername"><%=message.username%></span>
+                <span class="messagecontent"><%=message.content%></span>
+              </div>
 
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-            <div class="othermessage">
-              <span class="messageusername">Username</span>
-              <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-            </div>
-
-          <div class="othermessage">
-            <span class="messageusername">Username</span>
-            <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-          </div>
-
-          <div class="mymessage">
-            <span class="messageusername">Username</span>
-            <span class="messagecontent">This is some message content written by a user with username "Username"</span>
-          </div>
+            <% } %>
 
 
           </div>

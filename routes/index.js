@@ -7,11 +7,14 @@ var User = require('../models/User');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index');
 });
 
 router.get('/chat', function(req, res, next) {
-  res.render('chat', { title: 'Express' });
+  Message.find({}, (error, results) => {
+    console.log("Found",results);
+      res.render('chat', { messages: results, username: "bryce" });
+  });
 });
 
 router.post('/messages', function(req, res, next) {
@@ -26,7 +29,6 @@ router.get('/messages', function(req, res, next) {
   Message.find({}, (error, results) => {
     res.send(results);
   });
-
 });
 
 module.exports = router;
