@@ -25,7 +25,6 @@ router.get('/chat', function(req, res, next) {
     res.redirect("/");
   }else{
     Message.find({}, (error, results) => {
-      console.log("Found",results);
         res.render('chat', { messages: results, username: req.session.username });
     });
   }
