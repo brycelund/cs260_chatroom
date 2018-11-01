@@ -69,8 +69,9 @@
         username: "<%=username%>"
       },
       success: (result) => {
-        console.log("SENT"+result);
         $("#messageinput").val("");
+        var element = document.getElementById("messages");
+        element.scrollTop = element.scrollHeight + 50;
       }
     });
 
