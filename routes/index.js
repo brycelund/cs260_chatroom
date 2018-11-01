@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var session = require('express-session');
 
 var Message = require('../models/Message');
-var User = require('../models/User');
 
 router.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
 
